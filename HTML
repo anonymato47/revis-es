@@ -1,0 +1,64 @@
+<DOCTYPE HTML!>
+          {sections.map((s) => (
+            <li key={s.id}>
+              <a
+                href={`#${s.id}`}
+                className="inline-block px-3 py-1 rounded-full hover:bg-purple-900 active:bg-purple-700 transition"
+              >
+                {s.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <main className="max-w-5xl mx-auto px-4 py-8 space-y-10">
+        {sections.map((section) => (
+          <motion.section
+            id={section.id}
+            key={section.id}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fade}
+          >
+            <Card className="bg-zinc-900 shadow-xl rounded-2xl">
+              <CardHeader>
+                <CardTitle className="text-2xl font-semibold text-purple-300">
+                  {section.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="prose prose-invert max-w-none">
+                <p>{section.summary}</p>
+                <img
+                  src={section.img}
+                  alt={section.title}
+                  className="rounded-xl mx-auto my-4"
+                />
+                <div className="my-6 flex justify-center">
+                  <iframe
+                    className="w-full max-w-2xl aspect-video rounded-xl"
+                    src={`https://www.youtube.com/embed/${section.video}`}
+                    title={`YouTube – ${section.title}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <a
+                  href="#top"
+                  className="text-sm underline decoration-dotted text-indigo-400"
+                >
+                  Voltar ao topo ▲
+                </a>
+              </CardContent>
+            </Card>
+          </motion.section>
+        ))}
+      </main>
+
+      <footer className="py-6 text-center text-xs text-gray-500">
+        © 2025 — Compilado por Guilherme & ChatGPT. Fontes abertas · Licença CC-BY-SA.
+      </footer>
+    </div>
+  );
+}
